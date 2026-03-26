@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emirhan Sen, Squash Player - emirhnsenn.me</title>
+    <meta name="description"
+        content="Emirhan Sen - Turkish National Squash Player, competing since 2013. View career results, gallery, and contact information.">
+    <meta name="keywords" content="Emirhan Sen, squash, Turkish squash, St. Lawrence squash, athlete, sports">
+    <meta name="author" content="Emirhan Sen">
+    <meta property="og:title" content="Emirhan Sen - Squash Player">
+    <meta property="og:description"
+        content="Turkish National Squash Player representing Turkey internationally. Competing since 2013.">
+    <meta property="og:image" content="assets/images/background.jpeg">
+    <meta property="og:url" content="https://emirhnsenn.me">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Emirhan Sen - Squash Player">
+    <meta name="twitter:description" content="Turkish National Squash Player representing Turkey internationally.">
+    <meta name="twitter:image" content="assets/images/background.jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Emirhan Sen",
+      "jobTitle": "Professional Squash Player",
+      "url": "https://emirhnsenn.me",
+      "image": "https://emirhnsenn.me/assets/images/background.jpeg",
+      "sameAs": [
+        "https://www.instagram.com/emirhnsenn",
+        "https://www.tiktok.com/@emirhnsenn",
+        "https://twitter.com/emirhnsenn",
+        "https://www.linkedin.com/in/emirhnsenn/"
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="assets/images/background.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo+.png">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brand-yellow: #ffcc00;
+            --brand-yellow-dim: rgba(255, 204, 0, 0.15);
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.85) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a1a;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-brand img {
+            max-height: 55px;
+            width: auto;
+        }
+
+        .nav-link {
+            color: #aaa !important;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--brand-yellow) !important;
+        }
+
+        .navbar-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1024;
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar-backdrop.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* HERO */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            background-image: url('assets/images/background.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.1) 100%);
+            z-index: 2;
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, #000, transparent);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            margin-top: 200px;
+            margin-left: 8%;
+            max-width: 800px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--brand-yellow);
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.2s ease forwards;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 0.95;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.4s ease forwards;
+        }
+
+        .hero-title span {
+            color: var(--brand-yellow);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #bbb;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.6s ease forwards;
+        }
+
+        .text-brand-yellow {
+            color: var(--brand-yellow) !important;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            animation: fadeIn 1s 1.2s ease forwards;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(to bottom, var(--brand-yellow), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--brand-yellow);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .separator {
+            border: none;
+            border-bottom: 1px solid #1a1a1a;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* ABOUT */
+        .about-img-wrapper {
+            position: relative;
+        }
+
+        .about-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid var(--brand-yellow);
+            border-radius: 8px;
+            z-index: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .about-img-wrapper:hover::before {
+            transform: translate(4px, 4px);
+        }
+
+        .about-img-wrapper img {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-stat {
+            border-left: 2px solid var(--brand-yellow);
+            padding-left: 16px;
+        }
+
+        .about-stat .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--brand-yellow);
+            line-height: 1;
+        }
+
+        .about-stat .stat-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        /* SEASON */
+        #season {
+            background: #030303;
+        }
+
+        .season-stat-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+            height: 100%;
+        }
+
+        .season-stat-card:hover {
+            border-color: var(--brand-yellow);
+            transform: translateY(-3px);
+        }
+
+        .season-stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--brand-yellow);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .season-stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        .season-award-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 204, 0, 0.07);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: #ccc;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        .season-award-badge:hover {
+            background: rgba(255, 204, 0, 0.14);
+        }
+
+        .season-highlight-card {
+            background: #080808;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        /* ACCORDION */
+        .accordion-item {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .accordion-button {
+            background-color: #000 !important;
+            color: #fff !important;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            box-shadow: none !important;
+            padding: 20px 0;
+            transition: color 0.3s;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: var(--brand-yellow) !important;
+        }
+
+        .accordion-button::after {
+            filter: invert(1);
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            filter: invert(78%) sepia(88%) saturate(501%) hue-rotate(0deg) brightness(102%) contrast(103%);
+        }
+
+        .accordion-body {
+            padding: 0 0 20px 0;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #111;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-medal {
+            font-size: 1.2rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .result-text {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        .results-sticky-img {
+            position: sticky;
+            top: 120px;
+        }
+
+        /* GALLERY */
+        .gallery-filter-btn {
+            padding: 7px 20px;
+            border-radius: 30px;
+            border: 1px solid #2a2a2a;
+            background: transparent;
+            color: #777;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .gallery-filter-btn:hover {
+            border-color: #555;
+            color: #ccc;
+        }
+
+        .gallery-filter-btn.active {
+            background: var(--brand-yellow);
+            border-color: var(--brand-yellow);
+            color: #000;
+            font-weight: 600;
+        }
+
+        .gallery-col {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .gallery-col.hidden {
+            opacity: 0;
+            transform: scale(0.96);
+            pointer-events: none;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            display: block;
+        }
+
+        .gallery-img.loading {
+            opacity: 0.6;
+            filter: blur(2px);
+        }
+
+        .gallery-item {
+            background: #0a0a0a;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 204, 0, 0.0);
+            transition: background 0.4s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(255, 204, 0, 0.06);
+        }
+
+        /* CONTACT */
+        #contact .card {
+            background-color: #080808;
+            border: 1px solid #1a1a1a;
+            color: #fff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #contact .card:hover {
+            border-color: var(--brand-yellow) !important;
+            box-shadow: 0 8px 30px rgba(255, 204, 0, 0.1);
+        }
+
+        .btn-outline-yellow {
+            color: var(--brand-yellow);
+            border: 1px solid var(--brand-yellow);
+            background: transparent;
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .btn-outline-yellow:hover {
+            background: var(--brand-yellow);
+            color: #000;
+        }
+
+        .form-control {
+            background-color: #0d0d0d;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            background-color: #0d0d0d;
+            border-color: var(--brand-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1);
+            color: #fff;
+        }
+
+        .form-control::placeholder {
+            color: #444;
+        }
+
+        .form-control.is-invalid {
+            border-color: #e24b4a;
+        }
+
+        .invalid-feedback {
+            display: none;
+            font-size: 0.75rem;
+            color: #e24b4a;
+            margin-top: 4px;
+        }
+
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-color: #333 !important;
+            transition: border-color 0.3s, color 0.3s, background 0.3s !important;
+        }
+
+        .social-btn:hover {
+            border-color: var(--brand-yellow) !important;
+            color: var(--brand-yellow) !important;
+            background: var(--brand-yellow-dim) !important;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #000;
+            border-top: 1px solid #1a1a1a;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: #444;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        footer .footer-name {
+            color: var(--brand-yellow);
+        }
+
+        .footer-social {
+            margin-bottom: 16px;
+        }
+
+        .footer-social a {
+            color: #333;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            margin: 0 10px;
+        }
+
+        .footer-social a:hover {
+            color: var(--brand-yellow);
+        }
+
+        /* LIGHTBOX */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            transform: scale(0.95);
+            transition: transform 0.3s ease, opacity 0.15s ease;
+        }
+
+        .lightbox-overlay.show img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            color: #aaa;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .lightbox-close:hover {
+            color: var(--brand-yellow);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255, 204, 0, 0.15);
+            border-color: var(--brand-yellow);
+            color: var(--brand-yellow);
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #555;
+        }
+
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: var(--brand-yellow);
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            background: #fff;
+        }
+
+        /* FORM TOAST */
+        .form-toast {
+            display: none;
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            max-width: 90vw;
+        }
+
+        .form-toast.show {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .form-toast.success {
+            background: rgba(29, 158, 117, 0.95);
+            border: 1px solid rgba(29, 158, 117, 1);
+            color: #fff;
+        }
+
+        .form-toast.error {
+            background: rgba(226, 75, 74, 0.95);
+            border: 1px solid rgba(226, 75, 74, 1);
+            color: #fff;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-position: center top;
+                align-items: flex-end;
+                padding-bottom: 80px;
+            }
+
+            .hero-section::before {
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0.3) 100%);
+            }
+
+            .hero-content {
+                margin-top: 0;
+                margin-left: 0;
+                padding: 0 24px;
+                width: 100%;
+                text-align: left;
+            }
+
+            .hero-title {
+                font-size: 4.5rem !important;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .about-img-wrapper::before {
+                display: none;
+            }
+
+            .results-sticky-img {
+                position: static;
+            }
+
+            .lightbox-prev {
+                left: 8px;
+            }
+
+            .lightbox-next {
+                right: 8px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="#home"><img src="assets/images/logo.png" alt="Logo"></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link px-3" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#season">2025–26</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#results">Results</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero-section" id="home">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Turkish National Athlete</p>
+            <h1 class="hero-title">Emirhan<br><span>Sen</span></h1>
+            <p class="hero-subtitle">St. Lawrence Squash <span class="text-brand-yellow mx-2">·</span> Competing Since
+                2013</p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div><span>Scroll</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-md-5 reveal">
+                    <div class="about-img-wrapper">
+                        <img src="assets/images/about2.jpeg" alt="Emirhan Sen" class="img-fluid rounded">
+                    </div>
+                </div>
+                <div class="col-md-7 reveal">
+                    <p class="section-label">About Me</p>
+                    <h2 class="section-title mb-4">Hi, I'm<br>Emirhan Sen</h2>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">A 22-year-old athlete who has proudly
+                        represented Turkey abroad and achieved numerous successes both domestically and internationally.
+                    </p>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">I have been passionately involved in squash
+                        for 17 years, including 12 years of competing in European tournaments. Currently, I am pursuing
+                        my studies at St. Lawrence University in the United States, where I continue to excel in squash
+                        while balancing my academic responsibilities.</p>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">My goal is to become a professional and
+                        reach the top ranking — I train with discipline, focus, and full commitment to achieve it.</p>
+                    <div class="row g-4">
+                        <div class="col-auto">
+                            <div class="about-stat">
+                                <div class="stat-number count-up" data-target="17">0</div>
+                                <div class="stat-label">Years in Squash</div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="about-stat">
+                                <div class="stat-number count-up" data-target="37">0</div>
+                                <div class="stat-label">European Tournaments</div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="about-stat">
+                                <div class="stat-number">1x</div>
+                                <div class="stat-label">Turkish Champion</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- 2025-26 SEASON -->
+    <section id="season">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">St. Lawrence University</p>
+                <h2 class="section-title">2025–26 Season</h2>
+                <p style="color:#555;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-top:8px;">
+                    Liberty League · CSA Division</p>
+            </div>
+            <div class="row g-3 mb-5 justify-content-center">
+                <div class="col-6 col-md-2 reveal">
+                    <div class="season-stat-card">
+                        <div class="season-stat-number count-up" data-target="11">0</div>
+                        <div class="season-stat-label">Matches Won</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2 reveal">
+                    <div class="season-stat-card">
+                        <div class="season-stat-number count-up" data-target="5">0</div>
+                        <div class="season-stat-label">Matches Lost</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2 reveal">
+                    <div class="season-stat-card">
+                        <div class="season-stat-number">#3</div>
+                        <div class="season-stat-label">Lineup Position</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2 reveal">
+                    <div class="season-stat-card">
+                        <div class="season-stat-number">2nd</div>
+                        <div class="season-stat-label">LL Finish</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2 reveal">
+                    <div class="season-stat-card">
+                        <div class="season-stat-number count-up" data-target="3">0</div>
+                        <div class="season-stat-label">League Awards</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mb-5 reveal">
+                <p class="section-label mb-4">Awards & Honors</p>
+                <span class="season-award-badge"><span style="font-size:1rem">🏆</span> All-Liberty League First
+                    Team</span>
+                <span class="season-award-badge"><span style="font-size:1rem">⭐</span> LL Rookie of the Week — Feb 16,
+                    2026</span>
+                <span class="season-award-badge"><span style="font-size:1rem">⭐</span> LL Performer of the Week — Nov
+                    24, 2025</span>
+                <div class="mt-4">
+                    <button class="btn btn-sm btn-outline-light" onclick="shareAchievements()" 
+                        style="border-color:#333;font-size:0.75rem;padding:6px 14px;">
+                        <i class="bi bi-share me-1"></i> Share
+                    </button>
+                </div>
+            </div>
+            <div class="row justify-content-center reveal">
+                <div class="col-lg-8">
+                    <div class="season-highlight-card">
+                        <p class="section-label mb-4">Season Highlights</p>
+                        <div class="result-item"><span class="result-medal">🎯</span><span class="result-text">Played
+                                the full season at the No. 3 position — highest among all first-year players on the
+                                team</span></div>
+                        <div class="result-item"><span class="result-medal">🏅</span><span class="result-text">Liberty
+                                League Tournament: Defeated Hobart and Denison to reach the championship final</span>
+                        </div>
+                        <div class="result-item"><span class="result-medal">🇺🇸</span><span class="result-text">CSA
+                                Divisional Championships (Summers Cup): Won at No. 3 vs Hamilton in Philadelphia</span>
+                        </div>
+                        <div class="result-item"><span class="result-medal">⭐</span><span class="result-text">Performer
+                                of the Week (Nov 24): Went 3–0 in a single week — defeated Connecticut College, Vassar &
+                                Haverford</span></div>
+                        <div class="result-item" style="border-bottom:none"><span class="result-medal">📣</span><span
+                                class="result-text">Named by Head Coach David Morrish as one of the standout first-year
+                                recruits of the 2025–26 season</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- RESULTS -->
+    <section id="results">
+        <div class="container">
+            <div class="row flex-column-reverse flex-md-row align-items-start g-5">
+                <div class="col-md-6 reveal">
+                    <p class="section-label">Career</p>
+                    <h2 class="section-title mb-5">Results &<br>Achievements</h2>
+                    <div class="accordion accordion-flush" id="resultsAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2026"
+                                    aria-expanded="true">2026</button></h2>
+                            <div id="collapse2026" class="accordion-collapse collapse show"
+                                data-bs-parent="#resultsAccordion">
+                                <div class="accordion-body">
+                                    <div class="result-item"><span class="result-medal">🏆</span><span
+                                            class="result-text">All-Liberty League First Team (Voted Top 9
+                                            Players)</span></div>
+                                    <div class="result-item"><span class="result-medal">⭐</span><span
+                                            class="result-text">Men's Squash Liberty League Rookie of the Week (February
+                                            16, 2026)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2025"
+                                    aria-expanded="false">2025</button></h2>
+                            <div id="collapse2025" class="accordion-collapse collapse"
+                                data-bs-parent="#resultsAccordion">
+                                <div class="accordion-body">
+                                    <div class="result-item"><span class="result-medal">⭐</span><span
+                                            class="result-text">Nominated for Men's Squash Liberty League Performer of
+                                            the Week (November 24, 2025)</span></div>
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">European Team Division 3: 6th</span></div>
+                                    <div class="result-item"><span class="result-medal">🥇</span><span
+                                            class="result-text">Turkish National Squash Championship: 1st</span></div>
+                                    <div class="result-item"><span class="result-medal">🥈</span><span
+                                            class="result-text">Turkey Intercolleges Championship: 2nd</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2024"
+                                    aria-expanded="false">2024</button></h2>
+                            <div id="collapse2024" class="accordion-collapse collapse"
+                                data-bs-parent="#resultsAccordion">
+                                <div class="accordion-body">
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">European Team Division 3: 7th</span></div>
+                                    <div class="result-item"><span class="result-medal">🥉</span><span
+                                            class="result-text">Turkish National Squash Championship: 3rd</span></div>
+                                    <div class="result-item"><span class="result-medal">🥇</span><span
+                                            class="result-text">Turkey Intercolleges Championship: 1st</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2018"
+                                    aria-expanded="false">2018</button></h2>
+                            <div id="collapse2018" class="accordion-collapse collapse"
+                                data-bs-parent="#resultsAccordion">
+                                <div class="accordion-body">
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">German Junior Open (BU15): 4th</span></div>
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">French Junior Open (BU15): 13th</span></div>
+                                    <div class="result-item"><span class="result-medal">🥇</span><span
+                                            class="result-text">Turkish National Junior Squash Championship (BU15):
+                                            1st</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2016"
+                                    aria-expanded="false">2016</button></h2>
+                            <div id="collapse2016" class="accordion-collapse collapse"
+                                data-bs-parent="#resultsAccordion">
+                                <div class="accordion-body">
+                                    <div class="result-item"><span class="result-medal">🥇</span><span
+                                            class="result-text">Italian Junior Open (BU13): 1st</span></div>
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">British Junior Open (BU13): 14th</span></div>
+                                    <div class="result-item"><span class="result-medal">🥈</span><span
+                                            class="result-text">JC Lindsay Scottish Junior Open (BU13): 2nd</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2015"
+                                    aria-expanded="false">2015</button></h2>
+                            <div id="collapse2015" class="accordion-collapse collapse"
+                                data-bs-parent="#resultsAccordion">
+                                <div class="accordion-body">
+                                    <div class="result-item"><span class="result-medal">🥉</span><span
+                                            class="result-text">Italian Junior Open (BU13): 3rd</span></div>
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">British Junior Open (BU13): 16th</span></div>
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">Dutch Junior Open (BU13): 4th</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center reveal">
+                    <div class="results-sticky-img">
+                        <img src="assets/images/about1.jpeg" alt="Results" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="background:#030303;">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">Moments</p>
+                <h2 class="section-title">Gallery</h2>
+                <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
+                    <button class="gallery-filter-btn active" onclick="filterGallery('all',this)">All</button>
+                    <button class="gallery-filter-btn" onclick="filterGallery('match',this)">Match</button>
+                    <button class="gallery-filter-btn" onclick="filterGallery('tournament',this)">Tournament</button>
+                    <button class="gallery-filter-btn" onclick="filterGallery('training',this)">Training</button>
+                    <button class="gallery-filter-btn" onclick="filterGallery('team',this)">Team</button>
+                </div>
+            </div>
+            <div class="row g-3" id="galleryGrid">
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
+                    <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(0)"
+                        onkeydown="if(event.key==='Enter')openLightbox(0)"><img src="assets/photos/DSC_2875.jpg"
+                            alt="Squash Match" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')"></div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="tournament">
+                    <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(1)"
+                        onkeydown="if(event.key==='Enter')openLightbox(1)"><img
+                            src="assets/photos/23E1DFF0-0086-44A7-AF8F-536C8B213DCB_1_105_c.jpeg" alt="Tournament"
+                            class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')"></div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="training">
+                    <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(2)"
+                        onkeydown="if(event.key==='Enter')openLightbox(2)"><img
+                            src="assets/photos/BD5CD0C5-970C-4A77-AD00-61D1A721A4CB_1_201_a.jpeg" alt="Training Session"
+                            class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')"></div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="training">
+                    <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(3)"
+                        onkeydown="if(event.key==='Enter')openLightbox(3)"><img src="assets/photos/DSC_3088.jpg"
+                            alt="Training Session" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')"></div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="tournament">
+                    <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(4)"
+                        onkeydown="if(event.key==='Enter')openLightbox(4)"><img
+                            src="assets/photos/photo_2026-03-24_02-11-22.jpg" alt="Tournament" class="gallery-img loading"
+                            loading="lazy" onload="this.classList.remove('loading')"></div>
+                </div>
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="team">
+                    <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(5)"
+                        onkeydown="if(event.key==='Enter')openLightbox(5)"><img
+                            src="assets/photos/394E526F-3293-4810-9F19-6BD0A035A691_1_201_a.jpeg" alt="Team"
+                            class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">Get in Touch</p>
+                <h2 class="section-title">Contact</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-4 reveal">
+                    <div class="card p-4 h-100 shadow-sm">
+                        <h5 class="mb-4 text-warning fw-light"
+                            style="letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;">Contact Information
+                        </h5>
+                        <div class="mb-4">
+                            <label class="text-secondary small d-block mb-1">Sponsorship & Partnerships</label>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-briefcase text-warning me-2"></i>
+                                <a href="mailto:emirhnsenn@outlook.com" class="text-white text-decoration-none fw-bold"
+                                    style="font-size:0.9rem;">emirhnsenn@outlook.com</a>
+                                <button type="button" class="btn btn-sm btn-outline-light" onclick="copyEmail()" 
+                                    style="border-color:#333;font-size:0.75rem;padding:4px 10px;" title="Copy email">
+                                    <i class="bi bi-clipboard"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <label class="text-secondary small d-block mb-3">Social Media</label>
+                        <div class="social-links d-flex gap-2">
+                            <a href="https://www.instagram.com/emirhnsenn" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-outline-light btn-sm rounded-circle social-btn" aria-label="Instagram"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@emirhnsenn" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-outline-light btn-sm rounded-circle social-btn" aria-label="TikTok"><i
+                                    class="bi bi-tiktok"></i></a>
+                            <a href="https://twitter.com/emirhnsenn" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-outline-light btn-sm rounded-circle social-btn" aria-label="Twitter"><i
+                                    class="bi bi-twitter-x"></i></a>
+                            <a href="https://www.linkedin.com/in/emirhnsenn/" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-outline-light btn-sm rounded-circle social-btn" aria-label="LinkedIn"><i
+                                    class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 reveal">
+                    <div class="card p-4 shadow-sm">
+                        <h5 class="mb-4 fw-light"
+                            style="letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;color:#aaa;">Send a
+                            Message</h5>
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="f194ebba-3b0e-48ce-bd1d-a19122cae468">
+                            <input type="text" name="website_url" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <div class="mb-3"><label class="form-label text-secondary small">Name</label><input
+                                    type="text" name="name" class="form-control" placeholder="Your Name" required></div>
+                            <div class="mb-3"><label class="form-label text-secondary small">Email</label><input
+                                    type="email" name="email" class="form-control" placeholder="name@example.com"
+                                    required></div>
+                            <div class="mb-4"><label class="form-label text-secondary small">Message</label><textarea
+                                    name="message" class="form-control" rows="4" placeholder="How can I help you?"
+                                    required></textarea></div>
+                            <div class="d-grid"><button type="submit" class="btn btn-outline-yellow" id="submitBtn"><i
+                                        class="bi bi-send me-2"></i>Send Message</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)" role="dialog" aria-modal="true">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
+        <button class="lightbox-prev" onclick="shiftLightbox(-1)" aria-label="Previous"><i
+                class="bi bi-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Photo">
+        <button class="lightbox-next" onclick="shiftLightbox(1)" aria-label="Next"><i
+                class="bi bi-chevron-right"></i></button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+
+    <!-- NAVBAR BACKDROP -->
+    <div class="navbar-backdrop" id="navbarBackdrop" onclick="closeNavbar()"></div>
+
+    <!-- FORM TOAST -->
+    <div class="form-toast" id="formToast"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-social">
+                <a href="https://www.instagram.com/emirhnsenn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                        class="bi bi-instagram"></i></a>
+                <a href="https://www.tiktok.com/@emirhnsenn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
+                        class="bi bi-tiktok"></i></a>
+                <a href="https://twitter.com/emirhnsenn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i
+                        class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/in/emirhnsenn/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
+                        class="bi bi-linkedin"></i></a>
+            </div>
+            <p>© 2026 <span class="footer-name">Emirhan Sen</span> — All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // SCROLL REVEAL
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 100); revealObserver.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // COUNT-UP
+        const countObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const el = e.target, target = parseInt(el.dataset.target), step = 16, dur = 1200;
+                let cur = 0; const inc = target / (dur / step);
+                const t = setInterval(() => { cur += inc; if (cur >= target) { el.textContent = target; clearInterval(t); } else { el.textContent = Math.floor(cur); } }, step);
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.count-up[data-target]').forEach(el => countObserver.observe(el));
+
+        // NAVBAR
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => { navbar.style.backgroundColor = window.scrollY > 50 ? 'rgba(0,0,0,0.98)' : 'rgba(0,0,0,0.85)'; });
+
+        // ACTIVE NAV
+        const allSections = document.querySelectorAll('section[id], div[id="home"]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const activateLink = () => {
+            let cur = '';
+            allSections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
+            navLinks.forEach(l => { l.classList.remove('active'); if (l.getAttribute('href') === '#' + cur) l.classList.add('active'); });
+        };
+        window.addEventListener('scroll', activateLink); activateLink();
+
+        // MOBILE BACKDROP
+        const navCollapse = document.getElementById('navbarMain');
+        const backdrop = document.getElementById('navbarBackdrop');
+        navCollapse.addEventListener('show.bs.collapse', () => { backdrop.classList.add('show'); document.body.style.overflow = 'hidden'; });
+        navCollapse.addEventListener('hide.bs.collapse', () => { backdrop.classList.remove('show'); document.body.style.overflow = ''; });
+        function closeNavbar() { bootstrap.Collapse.getInstance(navCollapse)?.hide(); }
+        navLinks.forEach(l => l.addEventListener('click', () => { if (window.innerWidth < 992) closeNavbar(); }));
+
+        // BACK TO TOP
+        const btt = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
+
+        // GALLERY FILTER
+        function filterGallery(cat, btn) {
+            document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.gallery-col').forEach(col => {
+                col.classList.toggle('hidden', !(cat === 'all' || col.dataset.category === cat));
+            });
+        }
+
+        // LIGHTBOX
+        const images = Array.from(document.querySelectorAll('.gallery-img')).map(img => ({
+            src: img.src,
+            alt: img.alt
+        }));
+        let idx = 0;
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbCounter = document.getElementById('lightbox-counter');
+        function openLightbox(i) { idx = i; updateLb(); lb.style.display = 'flex'; document.body.style.overflow = 'hidden'; requestAnimationFrame(() => lb.classList.add('show')); }
+        function updateLb() { lbImg.src = images[idx].src; lbImg.alt = images[idx].alt; lbCounter.textContent = (idx + 1) + ' / ' + images.length; }
+        function closeLightbox() { lb.classList.remove('show'); setTimeout(() => { lb.style.display = 'none'; document.body.style.overflow = ''; }, 300); }
+        function closeLightboxOnBg(e) { if (e.target === lb) closeLightbox(); }
+        function shiftLightbox(d) { idx = (idx + d + images.length) % images.length; lbImg.style.opacity = '0'; setTimeout(() => { updateLb(); lbImg.style.opacity = '1'; }, 150); }
+        let tx = 0;
+        lb.addEventListener('touchstart', e => tx = e.changedTouches[0].clientX);
+        lb.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 50) shiftLightbox(d > 0 ? 1 : -1); });
+        document.addEventListener('keydown', e => { if (!lb.classList.contains('show')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') shiftLightbox(-1); if (e.key === 'ArrowRight') shiftLightbox(1); });
+
+        // COPY EMAIL
+        function copyEmail() {
+            navigator.clipboard.writeText('emirhnsenn@outlook.com').then(() => {
+                const btn = event.currentTarget;
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check"></i>';
+                btn.style.borderColor = '#1d9e75';
+                btn.style.color = '#1d9e75';
+                setTimeout(() => { btn.innerHTML = original; btn.style.borderColor = '#333'; btn.style.color = ''; }, 2000);
+            });
+        }
+
+        // SHARE ACHIEVEMENTS
+        function shareAchievements() {
+            const text = '🏆 Emirhan Sen - 2025-26 Season Highlights:\n• All-Liberty League First Team\n• LL Rookie of the Week (Feb 16, 2026)\n• LL Performer of the Week (Nov 24, 2025)\n• 11-5 Record at No. 3 Position\n\nCheck out my full profile:';
+            const url = 'https://emirhnsenn.me';
+            if (navigator.share) {
+                navigator.share({ title: 'Emirhan Sen - Squash Player', text, url }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(text + ' ' + url).then(() => {
+                    showToast('Copied to clipboard!', 'success');
+                });
+            }
+        }
+
+        // FORM
+        const cForm = document.getElementById('contactForm');
+        const subBtn = document.getElementById('submitBtn');
+        const toast = document.getElementById('formToast');
+        function showToast(msg, type) { toast.textContent = msg; toast.className = 'form-toast ' + type + ' show'; setTimeout(() => toast.classList.remove('show'), 4000); }
+
+        // Inline validation
+        const nameInput = cForm.querySelector('[name="name"]');
+        const emailInput = cForm.querySelector('[name="email"]');
+        const messageInput = cForm.querySelector('[name="message"]');
+
+        function showInlineError(input, msg) {
+            input.classList.add('is-invalid');
+            let err = input.parentElement.querySelector('.invalid-feedback');
+            if (!err) { err = document.createElement('div'); err.className = 'invalid-feedback'; input.parentElement.appendChild(err); }
+            err.textContent = msg;
+            err.style.display = 'block';
+        }
+
+        function clearInlineError(input) {
+            input.classList.remove('is-invalid');
+            const err = input.parentElement.querySelector('.invalid-feedback');
+            if (err) err.style.display = 'none';
+        }
+
+        [nameInput, emailInput, messageInput].forEach(inp => {
+            inp.addEventListener('blur', () => { if (inp.validity.valid) clearInlineError(inp); });
+            inp.addEventListener('input', () => clearInlineError(inp));
+        });
+
+        cForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            // Check honeypot (silent spam block)
+            if (cForm.querySelector('[name="website_url"]').value) return;
+
+            let valid = true;
+            if (!nameInput.value.trim()) { showInlineError(nameInput, 'Please enter your name'); valid = false; }
+            if (!emailInput.value.trim()) { showInlineError(emailInput, 'Please enter your email'); valid = false; }
+            else if (!emailInput.checkValidity()) { showInlineError(emailInput, 'Please enter a valid email'); valid = false; }
+            if (!messageInput.value.trim()) { showInlineError(messageInput, 'Please enter a message'); valid = false; }
+
+            if (!valid) return;
+
+            subBtn.disabled = true; subBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+            try {
+                const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(cForm) });
+                const j = await r.json();
+                if (j.success) { showToast('Message sent successfully!', 'success'); cForm.reset(); [nameInput, emailInput, messageInput].forEach(clearInlineError); }
+                else showToast('Something went wrong. Please try again.', 'error');
+            } catch { showToast('Network error. Please try again.', 'error'); }
+            finally { subBtn.disabled = false; subBtn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message'; }
+        });
+    </script>
+</body>
+
+</html>

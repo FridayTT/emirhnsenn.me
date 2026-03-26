@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block access to asset folders from search results (waste of crawl budget)
+Disallow: /assets/
+
+# Sitemap location
+Sitemap: https://emirhnsenn.me/sitemap.xml
