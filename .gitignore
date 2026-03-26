@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Keep generated WebP images (they're part of the build)
+# But exclude the mapping file (regenerated on each run)
+srcset-mapping.json
