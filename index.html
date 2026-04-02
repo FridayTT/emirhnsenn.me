@@ -9,6 +9,9 @@
         content="Emirhan Sen - Turkish National Squash Player, competing since 2013. View career results, gallery, and contact information.">
     <meta name="keywords" content="Emirhan Sen, squash, Turkish squash, St. Lawrence squash, athlete, sports">
     <meta name="author" content="Emirhan Sen">
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+    <link rel="canonical" href="https://emirhnsenn.me/">
     <meta property="og:title" content="Emirhan Sen - Squash Player">
     <meta property="og:description"
         content="Turkish National Squash Player representing Turkey internationally. Competing since 2013.">
@@ -29,6 +32,10 @@
       "jobTitle": "Professional Squash Player",
       "url": "https://emirhnsenn.me",
       "image": "https://emirhnsenn.me/assets/images/background.jpeg",
+      "nationality": { "@type": "Country", "name": "Turkey" },
+      "birthPlace": { "@type": "Place", "name": "Istanbul, Turkey" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "St. Lawrence University" },
+      "description": "Turkish National Squash Player, World No. 2 in BU13, currently playing No. 3 for St. Lawrence University.",
       "sameAs": [
         "https://www.instagram.com/emirhnsenn",
         "https://www.tiktok.com/@emirhnsenn",
@@ -40,16 +47,37 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="assets/images/background-1200w.webp" imagesrcset="assets/images/background-400w.webp 400w, assets/images/background-800w.webp 800w, assets/images/background-1200w.webp 1200w" imagesizes="100vw">
+    <link rel="preload" as="image" href="assets/images/background.jpeg" imagesizes="100vw">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" href="assets/images/logo+.png">
+    <link rel="mask-icon" href="assets/images/logo+.png" color="#000000">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <style>
         :root {
             --brand-yellow: #ffcc00;
             --brand-yellow-dim: rgba(255, 204, 0, 0.15);
+            --navbar-scroll-threshold: 140px;
+            --section-padding: 100px;
+            --section-padding-mobile: 60px;
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --scroll-progress: 0%;
+        }
+
+        /* Scroll Progress Bar */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: var(--scroll-progress);
+            background: linear-gradient(90deg, var(--brand-yellow), #fff);
+            z-index: 9999;
+            transition: width 0.1s linear;
+            pointer-events: none;
         }
 
         body {
@@ -57,6 +85,9 @@
             color: #fff;
             overflow-x: hidden;
             font-family: 'DM Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
         }
 
         /* NAVBAR */
@@ -94,13 +125,16 @@
             background: rgba(0, 0, 0, 0.7);
             z-index: 1024;
             backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .navbar-backdrop.show {
             display: block;
             opacity: 1;
+            pointer-events: auto;
         }
 
         /* HERO */
@@ -110,11 +144,24 @@
             width: 100%;
             display: flex;
             align-items: flex-start;
-            background-image: url('assets/images/background.jpeg');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
             overflow: hidden;
+            will-change: transform;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .hero-section .hero-bg-img {
+            /* Image is behind content via z-index */
         }
 
         .hero-section::before {
@@ -123,6 +170,7 @@
             inset: 0;
             background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.1) 100%);
             z-index: 2;
+            pointer-events: none;
         }
 
         .hero-section::after {
@@ -134,6 +182,7 @@
             height: 200px;
             background: linear-gradient(to top, #000, transparent);
             z-index: 2;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -142,6 +191,11 @@
             margin-top: 200px;
             margin-left: 8%;
             max-width: 800px;
+            pointer-events: none;
+        }
+
+        .hero-content>* {
+            pointer-events: auto;
         }
 
         .hero-eyebrow {
@@ -201,7 +255,7 @@
             font-size: 0.65rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #666;
+            color: #888;
         }
 
         .scroll-line {
@@ -213,14 +267,18 @@
 
         /* SECTIONS */
         section {
-            padding: 100px 0;
+            padding: var(--section-padding) 0;
+        }
+
+        #contact {
+            padding-bottom: 40px;
         }
 
         .section-label {
             font-size: 0.75rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--brand-yellow);
+            color: #888;
             margin-bottom: 8px;
         }
 
@@ -231,6 +289,28 @@
             color: #fff;
             line-height: 1;
             margin-bottom: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--brand-yellow);
+            transition: width 0.6s var(--ease-out-expo);
+        }
+
+        .reveal.visible .section-title::after,
+        .section-title::after {
+            width: 0;
+        }
+
+        .reveal.visible .section-title::after {
+            width: 100%;
         }
 
         .separator {
@@ -268,22 +348,32 @@
         }
 
         .about-stat {
-            border-left: 2px solid var(--brand-yellow);
+            border-left: 2px solid #444;
             padding-left: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .about-stat:hover {
+            border-color: var(--brand-yellow);
         }
 
         .about-stat .stat-number {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 2.5rem;
-            color: var(--brand-yellow);
+            color: #fff;
             line-height: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .about-stat:hover .stat-number {
+            transform: scale(1.1);
         }
 
         .about-stat .stat-label {
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #777;
+            color: #999;
         }
 
         /* SEASON */
@@ -292,24 +382,46 @@
         }
 
         .season-stat-card {
-            background: #0a0a0a;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
             border: 1px solid #1a1a1a;
             border-radius: 12px;
             padding: 24px 20px;
             text-align: center;
-            transition: border-color 0.3s, transform 0.3s;
+            transition: all 0.4s var(--ease-out-expo);
             height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .season-stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-yellow);
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.1);
+        }
+
+        .season-stat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.08) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-out-expo);
         }
 
         .season-stat-card:hover {
             border-color: var(--brand-yellow);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 204, 0, 0.1);
+        }
+
+        .season-stat-card:hover::before {
+            opacity: 1;
         }
 
         .season-stat-number {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 3rem;
-            color: var(--brand-yellow);
+            color: #fff;
             line-height: 1;
             margin-bottom: 6px;
         }
@@ -318,15 +430,15 @@
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #555;
+            color: #888;
         }
 
         .season-award-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 204, 0, 0.07);
-            border: 1px solid rgba(255, 204, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 10px 16px;
             font-size: 0.85rem;
@@ -336,7 +448,7 @@
         }
 
         .season-award-badge:hover {
-            background: rgba(255, 204, 0, 0.14);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .season-highlight-card {
@@ -361,7 +473,12 @@
             letter-spacing: 2px;
             box-shadow: none !important;
             padding: 20px 0;
-            transition: color 0.3s;
+            transition: all 0.3s var(--ease-smooth);
+            border-radius: 0;
+        }
+
+        .accordion-button:hover {
+            color: var(--brand-yellow) !important;
         }
 
         .accordion-button:not(.collapsed) {
@@ -370,10 +487,15 @@
 
         .accordion-button::after {
             filter: invert(1);
+            transition: transform 0.3s var(--ease-out-expo);
         }
 
         .accordion-button:not(.collapsed)::after {
-            filter: invert(78%) sepia(88%) saturate(501%) hue-rotate(0deg) brightness(102%) contrast(103%);
+            filter: invert(1);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: transparent !important;
         }
 
         .accordion-body {
@@ -411,7 +533,7 @@
 
         /* GALLERY */
         .gallery-filter-btn {
-            padding: 7px 20px;
+            padding: 8px 22px;
             border-radius: 30px;
             border: 1px solid #2a2a2a;
             background: transparent;
@@ -420,12 +542,29 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.25s;
+            transition: all 0.3s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-filter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--brand-yellow);
+            transform: scale(0);
+            border-radius: 30px;
+            transition: transform 0.3s var(--ease-out-expo);
+            z-index: -1;
         }
 
         .gallery-filter-btn:hover {
-            border-color: #555;
-            color: #ccc;
+            border-color: var(--brand-yellow);
+            color: var(--brand-yellow);
+        }
+
+        .gallery-filter-btn:hover::before {
+            transform: scale(0.1);
         }
 
         .gallery-filter-btn.active {
@@ -433,16 +572,21 @@
             border-color: var(--brand-yellow);
             color: #000;
             font-weight: 600;
-        }
-
-        .gallery-col {
-            transition: opacity 0.35s ease, transform 0.35s ease;
+            transform: scale(1.05);
         }
 
         .gallery-col.hidden {
-            opacity: 0;
+            opacity: 0 !important;
             transform: scale(0.96);
             pointer-events: none;
+            height: 0 !important;
+            overflow: hidden;
+            padding: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .gallery-col {
+            transition: opacity 0.35s ease, transform 0.35s ease, height 0.35s ease;
         }
 
         .gallery-img {
@@ -467,6 +611,58 @@
             overflow: hidden;
             border: 1px solid #1a1a1a;
             position: relative;
+            padding-bottom: 48px;
+            transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), border-color 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 204, 0, 0.15);
+            border-color: var(--brand-yellow);
+        }
+
+        .gallery-item .gallery-img {
+            transition: transform 0.5s var(--ease-out-expo);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%);
+            padding: 20px 16px 14px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #ddd;
+            letter-spacing: 0.8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (hover: none) {
+            .gallery-caption {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-caption {
+                font-size: 0.8rem;
+                padding: 16px 12px 10px;
+            }
         }
 
         .gallery-item::after {
@@ -488,15 +684,35 @@
 
         /* CONTACT */
         #contact .card {
-            background-color: #080808;
+            background: linear-gradient(135deg, #080808 0%, #0d0d0d 100%);
             border: 1px solid #1a1a1a;
             color: #fff;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: all 0.4s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--brand-yellow);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease-out-expo);
         }
 
         #contact .card:hover {
             border-color: var(--brand-yellow) !important;
-            box-shadow: 0 8px 30px rgba(255, 204, 0, 0.1);
+            box-shadow: 0 12px 40px rgba(255, 204, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        #contact .card:hover::before {
+            transform: scaleX(1);
         }
 
         .btn-outline-yellow {
@@ -507,12 +723,36 @@
             font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: background 0.3s, color 0.3s;
+            transition: all 0.3s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline-yellow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--brand-yellow);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease-out-expo);
         }
 
         .btn-outline-yellow:hover {
-            background: var(--brand-yellow);
             color: #000;
+            border-color: var(--brand-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.2);
+        }
+
+        .btn-outline-yellow:hover::before {
+            transform: scaleX(1);
+        }
+
+        .btn-outline-yellow span,
+        .btn-outline-yellow i {
+            position: relative;
+            z-index: 1;
         }
 
         .form-control {
@@ -564,7 +804,7 @@
         footer {
             background-color: #000;
             border-top: 1px solid #1a1a1a;
-            padding: 40px 0;
+            padding: 20px 0;
             text-align: center;
         }
 
@@ -693,8 +933,8 @@
             position: fixed;
             bottom: 32px;
             right: 28px;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background: var(--brand-yellow);
             color: #000;
             border: none;
@@ -702,23 +942,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             z-index: 999;
             opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s var(--ease-out-expo);
             pointer-events: none;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
         }
 
         .back-to-top.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
             pointer-events: all;
         }
 
         .back-to-top:hover {
             background: #fff;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px) scale(0.98);
         }
 
         /* FORM TOAST */
@@ -792,23 +1039,162 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            html { scroll-behavior: auto; }
+
+            html {
+                scroll-behavior: auto;
+            }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+            will-change: opacity, transform;
         }
 
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+        }
+
+        /* Slide from left */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Slide from right */
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scale up */
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Rotate in */
+        .reveal-rotate {
+            opacity: 0;
+            transform: rotate(-5deg) translateY(30px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .reveal-rotate.visible {
+            opacity: 1;
+            transform: rotate(0) translateY(0);
+        }
+
+        /* Blur in */
+        .reveal-blur {
+            opacity: 0;
+            filter: blur(10px);
+            transition: opacity 0.8s var(--ease-out-expo), filter 0.8s var(--ease-out-expo);
+        }
+
+        .reveal-blur.visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        /* Stagger animation for children */
+        .reveal .season-stat-card,
+        .reveal .gallery-item,
+        .reveal .timeline-item,
+        .reveal-left .timeline-item,
+        .reveal-right .timeline-item {
+            transition-delay: 0.1s;
+        }
+
+        /* Parallax effect for hero */
+        .hero-bg-img {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* Counter animation */
+        .stat-number {
+            display: inline-block;
+        }
+
+        .counting {
+            animation: countPulse 0.3s ease;
+        }
+
+        @keyframes countPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Timeline line animation */
+        .timeline::before {
+            background: linear-gradient(to bottom, var(--brand-yellow), transparent);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 1.2s var(--ease-out-expo);
+        }
+
+        .timeline.visible::before {
+            transform: scaleY(1);
+        }
+
+        /* MOBILE NAVBAR */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .navbar-brand img {
+                max-height: 40px;
+            }
+
+            .navbar-toggler {
+                padding: 8px;
+                font-size: 1.25rem;
+            }
+
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+
+            .navbar-backdrop {
+                display: block;
+            }
         }
 
         /* MOBILE */
@@ -817,53 +1203,836 @@
                 background-position: center top;
                 align-items: flex-end;
                 padding-bottom: 80px;
+                min-height: 100vh;
             }
 
             .hero-section::before {
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0.3) 100%);
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.15) 100%);
             }
 
             .hero-content {
                 margin-top: 0;
                 margin-left: 0;
-                padding: 0 24px;
+                padding: 0 20px;
                 width: 100%;
                 text-align: left;
             }
 
+            .hero-eyebrow {
+                font-size: 0.7rem;
+                letter-spacing: 3px;
+                margin-bottom: 8px;
+            }
+
             .hero-title {
-                font-size: 4.5rem !important;
+                font-size: 3.5rem !important;
+                line-height: 1;
+                margin-bottom: 12px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+            }
+
+            .scroll-indicator {
+                bottom: 25px;
             }
 
             section {
-                padding: 60px 0;
+                padding: var(--section-padding-mobile) 0;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .section-label {
+                font-size: 0.65rem;
+                letter-spacing: 3px;
             }
 
             .about-img-wrapper::before {
                 display: none;
             }
 
+            .about-img-wrapper img {
+                width: 100%;
+                height: auto;
+            }
+
+            .about-stat {
+                text-align: left;
+                margin-bottom: 16px;
+            }
+
+            #about .col-md-7 {
+                text-align: center;
+            }
+
+            #about .about-stat {
+                text-align: center;
+            }
+
+            #results .col-md-6 {
+                text-align: center;
+            }
+
+            .about-stat .stat-number {
+                font-size: 2rem;
+            }
+
+            .about-stat .stat-label {
+                font-size: 0.7rem;
+            }
+
             .results-sticky-img {
                 position: static;
+                margin-bottom: 30px;
+            }
+
+            .results-sticky-img img {
+                width: 100%;
+                height: auto;
+            }
+
+            .accordion-button {
+                font-size: 1.5rem;
+                padding: 16px 0;
+            }
+
+            .result-item {
+                padding: 8px 0;
+            }
+
+            .result-text {
+                font-size: 0.9rem;
+            }
+
+            .season-stat-card {
+                padding: 16px 12px;
+            }
+
+            .season-stat-number {
+                font-size: 1.8rem;
+            }
+
+            .season-stat-label {
+                font-size: 0.65rem;
+            }
+
+            .season-award-badge {
+                font-size: 0.75rem;
+                padding: 8px 12px;
+                display: inline-flex;
+                margin: 4px;
+            }
+
+            .season-highlight-card {
+                padding: 20px 16px;
+            }
+
+            .gallery-grid {
+                gap: 12px;
+            }
+
+            .gallery-img {
+                height: 220px;
+            }
+
+            .gallery-caption {
+                font-size: 0.7rem;
+                padding: 10px 12px;
+            }
+
+            .video-card {
+                margin-bottom: 16px;
+            }
+
+            .video-thumbnail img {
+                height: 150px;
+            }
+
+            .video-title {
+                font-size: 0.85rem;
+            }
+
+            .video-meta {
+                font-size: 0.7rem;
             }
 
             .lightbox-prev {
                 left: 8px;
+                width: 40px;
+                height: 40px;
             }
 
             .lightbox-next {
                 right: 8px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-close {
+                top: 12px;
+                right: 16px;
+                font-size: 1.5rem;
+            }
+
+            .lightbox-caption {
+                bottom: 50px;
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+
+            #contact .card {
+                padding: 20px 16px;
+            }
+
+            .social-links {
+                justify-content: flex-start;
+            }
+
+            .footer-grid {
+                text-align: center;
+            }
+
+            .footer-links {
+                margin-bottom: 20px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 3rem !important;
+            }
+
+            .hero-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery-img {
+                height: 180px;
+            }
+
+            .video-thumbnail img {
+                height: 130px;
+            }
+
+            .video-play-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section {
+                min-height: auto;
+                height: auto;
+                padding: 100px 0 60px;
+            }
+
+            .hero-content {
+                margin-top: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        /* Touch improvements */
+        @media (hover: none) {
+            .gallery-item:hover {
+                transform: none;
+            }
+
+            .gallery-item:hover .gallery-img {
+                transform: none;
+            }
+
+            .season-stat-card:hover {
+                transform: none;
+            }
+
+            .video-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .video-card:hover::before {
+                opacity: 0 !important;
+            }
+
+            .video-card::after {
+                display: none;
+            }
+
+            .video-card:hover .video-play-btn {
+                transform: translate(-50%, -50%);
+                background: rgba(255, 204, 0, 0.9);
+            }
+
+            #contact .card:hover {
+                transform: none;
+            }
+
+            .btn-outline-yellow:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .btn-outline-yellow:hover::before {
+                transform: scaleX(0);
+            }
+
+            .back-to-top:hover {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* SKIP TO CONTENT */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-yellow);
+            color: #000;
+            padding: 12px 24px;
+            z-index: 99999;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0 0 8px 8px;
+            transition: top 0.3s;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* TIMELINE */
+        .timeline-section {
+            background: #010101;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--brand-yellow) 10%, var(--brand-yellow) 90%, transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 0 40px 40px;
+            transition: transform 0.3s var(--ease-smooth);
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.02);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background: var(--brand-yellow);
+            border: 3px solid #000;
+            border-radius: 50%;
+            z-index: 1;
+            transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.5);
+            box-shadow: 0 0 20px var(--brand-yellow);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -7px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -7px;
+        }
+
+        .timeline-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            line-height: 1;
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        .timeline-item:hover .timeline-year {
+            color: var(--brand-yellow);
+        }
+
+        .timeline-text {
+            font-size: 0.9rem;
+            color: #bbb;
+            line-height: 1.5;
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        .timeline-item:hover .timeline-text {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+                background: linear-gradient(to bottom, transparent, var(--brand-yellow) 5%, var(--brand-yellow) 95%, transparent);
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 55px;
+                padding-right: 0;
+                padding-bottom: 30px;
+            }
+
+            .timeline-dot {
+                left: 13px !important;
+                right: auto !important;
+                width: 16px;
+                height: 16px;
+                top: 4px;
+            }
+
+            .timeline-year {
+                font-size: 1.5rem;
+                margin-bottom: 4px;
+            }
+
+            .timeline-text {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* VIDEO SECTION */
+        #highlights {
+            background: #000;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+            background: #0a0a0a;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.4s var(--ease-out-expo);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.06) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-out-expo);
+        }
+
+        .video-card:hover {
+            border-color: var(--brand-yellow);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 204, 0, 0.15);
+            color: #fff;
+        }
+
+        .video-card:hover::before {
+            opacity: 1;
+        }
+
+        .video-play-btn {
+            transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
+        }
+
+        .video-card:hover .video-play-btn {
+            transform: scale(1.2);
+            background: var(--brand-yellow);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 204, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.2rem;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .video-card:hover .video-play-btn {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--brand-yellow);
+        }
+
+        .video-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ddd;
+            margin-bottom: 4px;
+        }
+
+        .video-meta {
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        /* TESTIMONIAL */
+        .testimonial-section {
+            background: #030303;
+        }
+
+        .testimonial-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6rem;
+            color: var(--brand-yellow);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #ccc;
+            line-height: 1.7;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--brand-yellow);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-role {
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        /* GALLERY SHIMMER - Enhanced */
+        .gallery-img.loading {
+            background: linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.2s var(--ease-out-expo) infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Image loaded state - smooth fade in */
+        .gallery-img:not(.loading) {
+            animation: imageFadeIn 0.5s var(--ease-out-expo);
+        }
+
+        @keyframes imageFadeIn {
+            from {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* GALLERY FILTER MOBILE */
+        .gallery-filter-wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .gallery-filter-wrap {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 0 16px;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .gallery-filter-wrap::-webkit-scrollbar {
+                display: none;
+            }
+
+            .gallery-filter-btn {
+                flex-shrink: 0;
+            }
+        }
+
+        /* LIGHTBOX CAPTION */
+        .lightbox-caption {
+            position: absolute;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #aaa;
+            letter-spacing: 1px;
+            text-align: center;
+            max-width: calc(100vw - 120px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-caption {
+                bottom: 60px;
+                font-size: 0.7rem;
+                max-width: calc(100vw - 40px);
+                padding: 5px 12px;
+            }
+        }
+
+        /* SEPARATOR GRADIENT */
+        .separator {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #333 30%, #333 70%, transparent);
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* ENHANCED FOOTER */
+        footer {
+            background-color: #000;
+            border-top: 1px solid #1a1a1a;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+        }
+
+        .footer-heading {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-yellow);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .footer-bottom .footer-name {
+            color: var(--brand-yellow);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-social a {
+            color: #444;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .footer-social a:hover {
+            color: var(--brand-yellow);
+        }
+
+        /* CONTACT CARD HEIGHT */
+        #contact .card.h-100 {
+            min-height: 100%;
+        }
+
+        /* SEASON STATS MOBILE */
+        @media (max-width: 480px) {
+            .season-stat-number {
+                font-size: 2.2rem;
+            }
+
+            .season-stat-card {
+                padding: 16px 12px;
             }
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: 10px;
+        }
+
+        @media (max-width: 991px) {
+            html {
+                scroll-padding-top: 60px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <a href="#home" class="skip-to-content">Skip to main content</a>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container">
@@ -876,9 +2045,10 @@
                 <ul class="navbar-nav ms-auto gap-1">
                     <li class="nav-item"><a class="nav-link px-3" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+
                     <li class="nav-item"><a class="nav-link px-3" href="#season">2025–26</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="#results">Results</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#gallery">Media</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -887,6 +2057,9 @@
 
     <!-- HERO -->
     <div class="hero-section" id="home">
+        <picture>
+            <img src="assets/images/background.jpeg" alt="" class="hero-bg-img" fetchpriority="high" loading="eager">
+        </picture>
         <div class="hero-content">
             <p class="hero-eyebrow">Turkish National Athlete</p>
             <h1 class="hero-title">Emirhan<br><span>Sen</span></h1>
@@ -904,24 +2077,25 @@
             <div class="row align-items-center g-5">
                 <div class="col-md-5 reveal">
                     <div class="about-img-wrapper">
-                        <picture>
-                            <source type="image/webp" srcset="assets/images/about2-400w.webp 400w, assets/images/about2-800w.webp 800w, assets/images/about2-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/images/about2.jpeg" alt="Emirhan Sen" class="img-fluid rounded" loading="lazy" width="800" height="600">
-                        </picture>
+                        <img src="assets/images/about2.jpeg" alt="Emirhan Sen" class="img-fluid rounded" loading="eager"
+                            fetchpriority="high" width="800" height="600">
                     </div>
                 </div>
                 <div class="col-md-7 reveal">
                     <p class="section-label">About Me</p>
                     <h2 class="section-title mb-4">Hi, I'm<br>Emirhan Sen</h2>
-                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">A 22-year-old athlete who has proudly
-                        represented Turkey abroad and achieved numerous successes both domestically and internationally.
-                    </p>
-                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">I have been passionately involved in squash
-                        for 17 years, including 12 years of competing in European tournaments. Currently, I am pursuing
-                        my studies at St. Lawrence University in the United States, where I continue to excel in squash
-                        while balancing my academic responsibilities.</p>
-                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">My goal is to become a professional and
-                        reach the top ranking — I train with discipline, focus, and full commitment to achieve it.</p>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">A 22-year-old athlete from <strong
+                            style="color:#ddd;">Istanbul, Turkey</strong> who has proudly represented Turkey abroad and
+                        achieved numerous successes both domestically and internationally.</p>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">I started squash at age 5 — my father was
+                        my first coach. By 10, I was competing in European Squash Federation (ESF) tournaments across 12
+                        years of international competition. At my peak, I reached <strong
+                            style="color:var(--brand-yellow)">World No. 2 in the BU13 category</strong>.</p>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">Currently studying at St. Lawrence
+                        University (USA), playing No. 3 on the varsity Men's Squash team while maintaining strong
+                        academic performance.</p>
+                    <p class="lead mb-3" style="color:#bbb;font-weight:300;">My goal is to go professional and reach the
+                        world top ranking — I train with discipline, focus, and full commitment to achieve it.</p>
                     <div class="row g-4">
                         <div class="col-auto">
                             <div class="about-stat">
@@ -931,14 +2105,8 @@
                         </div>
                         <div class="col-auto">
                             <div class="about-stat">
-                                <div class="stat-number count-up" data-target="37">0</div>
-                                <div class="stat-label">European Tournaments</div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="about-stat">
-                                <div class="stat-number">1x</div>
-                                <div class="stat-label">Turkish Champion</div>
+                                <div class="stat-number">160+</div>
+                                <div class="stat-label">European Matches</div>
                             </div>
                         </div>
                     </div>
@@ -955,7 +2123,7 @@
             <div class="text-center mb-5 reveal">
                 <p class="section-label">St. Lawrence University</p>
                 <h2 class="section-title">2025–26 Season</h2>
-                <p style="color:#555;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-top:8px;">
+                <p style="color:#888;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-top:18px;">
                     Liberty League · CSA Division</p>
             </div>
             <div class="row g-3 mb-5 justify-content-center">
@@ -967,7 +2135,7 @@
                 </div>
                 <div class="col-6 col-md-2 reveal">
                     <div class="season-stat-card">
-                        <div class="season-stat-number count-up" data-target="5">0</div>
+                        <div class="season-stat-number count-up" data-target="7">0</div>
                         <div class="season-stat-label">Matches Lost</div>
                     </div>
                 </div>
@@ -998,25 +2166,17 @@
                     2026</span>
                 <span class="season-award-badge"><span style="font-size:1rem">⭐</span> LL Performer of the Week — Nov
                     24, 2025</span>
-                <div class="mt-4">
-                    <button class="btn btn-sm btn-outline-light" onclick="shareAchievements()" 
-                        style="border-color:#333;font-size:0.75rem;padding:6px 14px;">
-                        <i class="bi bi-share me-1"></i> Share
-                    </button>
-                </div>
             </div>
             <div class="row justify-content-center reveal">
                 <div class="col-lg-8">
                     <div class="season-highlight-card">
                         <p class="section-label mb-4">Season Highlights</p>
-                        <div class="result-item"><span class="result-medal">🎯</span><span class="result-text">Played
-                                the full season at the No. 3 position — highest among all first-year players on the
-                                team</span></div>
+
                         <div class="result-item"><span class="result-medal">🏅</span><span class="result-text">Liberty
                                 League Tournament: Defeated Hobart and Denison to reach the championship final</span>
                         </div>
-                        <div class="result-item"><span class="result-medal">🇺🇸</span><span class="result-text">CSA
-                                Divisional Championships (Summers Cup): Won at No. 3 vs Hamilton in Philadelphia</span>
+                        <div class="result-item"><span class="result-medal">🏆</span><span class="result-text">CSA
+                                Summer Cup Divisionals: Finished 4th overall</span>
                         </div>
                         <div class="result-item"><span class="result-medal">⭐</span><span class="result-text">Performer
                                 of the Week (Nov 24): Went 3–0 in a single week — defeated Connecticut College, Vassar &
@@ -1099,6 +2259,9 @@
                                 data-bs-parent="#resultsAccordion">
                                 <div class="accordion-body">
                                     <div class="result-item"><span class="result-medal">🏅</span><span
+                                            class="result-text">JC Lindsay Scottish Junior Open (BU17): 18th</span>
+                                    </div>
+                                    <div class="result-item"><span class="result-medal">🏅</span><span
                                             class="result-text">German Junior Open (BU15): 4th</span></div>
                                     <div class="result-item"><span class="result-medal">🏅</span><span
                                             class="result-text">French Junior Open (BU15): 13th</span></div>
@@ -1121,6 +2284,9 @@
                                             class="result-text">British Junior Open (BU13): 14th</span></div>
                                     <div class="result-item"><span class="result-medal">🥈</span><span
                                             class="result-text">JC Lindsay Scottish Junior Open (BU13): 2nd</span></div>
+                                    <div class="result-item"><span class="result-medal">🌍</span><span
+                                            class="result-text">Peak Junior World Ranking: <strong
+                                                style="color:var(--brand-yellow)">No. 2 (BU13)</strong></span></div>
                                 </div>
                             </div>
                         </div>
@@ -1144,10 +2310,8 @@
                 </div>
                 <div class="col-md-6 text-center reveal">
                     <div class="results-sticky-img">
-                        <picture>
-                            <source type="image/webp" srcset="assets/images/about1-400w.webp 400w, assets/images/about1-800w.webp 800w, assets/images/about1-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/images/about1.jpeg" alt="Results" class="img-fluid rounded shadow" loading="lazy" width="800" height="600">
-                        </picture>
+                        <img src="assets/images/about1.jpeg" alt="Results" class="img-fluid rounded shadow"
+                            loading="lazy" fetchpriority="low" width="800" height="600">
                     </div>
                 </div>
             </div>
@@ -1159,75 +2323,94 @@
         <div class="container">
             <div class="text-center mb-5 reveal">
                 <p class="section-label">Moments</p>
-                <h2 class="section-title">Gallery</h2>
-                <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
-                    <button class="gallery-filter-btn active" onclick="filterGallery('all',this)">All</button>
-                    <button class="gallery-filter-btn" onclick="filterGallery('match',this)">Match</button>
-                    <button class="gallery-filter-btn" onclick="filterGallery('tournament',this)">Tournament</button>
-                    <button class="gallery-filter-btn" onclick="filterGallery('training',this)">Training</button>
-                    <button class="gallery-filter-btn" onclick="filterGallery('team',this)">Team</button>
-                </div>
+                <h2 class="section-title">Media</h2>
             </div>
             <div class="row g-3" id="galleryGrid">
                 <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
                     <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(0)"
                         onkeydown="if(event.key==='Enter')openLightbox(0)">
-                        <picture>
-                            <source type="image/webp" srcset="assets/photos/DSC_2875-400w.webp 400w, assets/photos/DSC_2875-800w.webp 800w, assets/photos/DSC_2875-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/photos/DSC_2875.jpg" alt="Squash Match" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
-                        </picture>
+                        <img src="assets/photos/DSC_2875.jpg" alt="vs Naval Academy" class="gallery-img loading"
+                            loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
+                        <div class="gallery-caption">vs Naval Academy</div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="tournament">
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
                     <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(1)"
                         onkeydown="if(event.key==='Enter')openLightbox(1)">
-                        <picture>
-                            <source type="image/webp" srcset="assets/photos/23E1DFF0-0086-44A7-AF8F-536C8B213DCB_1_105_c-400w.webp 400w, assets/photos/23E1DFF0-0086-44A7-AF8F-536C8B213DCB_1_105_c-800w.webp 800w, assets/photos/23E1DFF0-0086-44A7-AF8F-536C8B213DCB_1_105_c-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/photos/23E1DFF0-0086-44A7-AF8F-536C8B213DCB_1_105_c.jpeg" alt="Tournament" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
-                        </picture>
+                        <img src="assets/photos/23E1DFF0-0086-44A7-AF8F-536C8B213DCB_1_105_c.jpeg"
+                            alt="vs Hobart College" class="gallery-img loading" loading="lazy"
+                            onload="this.classList.remove('loading')" width="400" height="300">
+                        <div class="gallery-caption">vs Hobart College</div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="training">
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
                     <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(2)"
                         onkeydown="if(event.key==='Enter')openLightbox(2)">
-                        <picture>
-                            <source type="image/webp" srcset="assets/photos/BD5CD0C5-970C-4A77-AD00-61D1A721A4CB_1_201_a-400w.webp 400w, assets/photos/BD5CD0C5-970C-4A77-AD00-61D1A721A4CB_1_201_a-800w.webp 800w, assets/photos/BD5CD0C5-970C-4A77-AD00-61D1A721A4CB_1_201_a-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/photos/BD5CD0C5-970C-4A77-AD00-61D1A721A4CB_1_201_a.jpeg" alt="Training Session" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
-                        </picture>
+                        <img src="assets/photos/BD5CD0C5-970C-4A77-AD00-61D1A721A4CB_1_201_a.jpeg"
+                            alt="vs Denison University" class="gallery-img loading" loading="lazy"
+                            onload="this.classList.remove('loading')" width="400" height="300">
+                        <div class="gallery-caption">vs Denison University</div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="training">
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
                     <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(3)"
                         onkeydown="if(event.key==='Enter')openLightbox(3)">
-                        <picture>
-                            <source type="image/webp" srcset="assets/photos/DSC_3088-400w.webp 400w, assets/photos/DSC_3088-800w.webp 800w, assets/photos/DSC_3088-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/photos/DSC_3088.jpg" alt="Training Session" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
-                        </picture>
+                        <img src="assets/photos/DSC_3088.jpg" alt="vs Naval Academy" class="gallery-img loading"
+                            loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
+                        <div class="gallery-caption">vs Naval Academy</div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="tournament">
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
                     <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(4)"
                         onkeydown="if(event.key==='Enter')openLightbox(4)">
-                        <picture>
-                            <source type="image/webp" srcset="assets/photos/photo_2026-03-24_02-11-22-400w.webp 400w, assets/photos/photo_2026-03-24_02-11-22-800w.webp 800w, assets/photos/photo_2026-03-24_02-11-22-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/photos/photo_2026-03-24_02-11-22.jpg" alt="Tournament" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
-                        </picture>
+                        <img src="assets/photos/photo_2026-03-24_02-11-22.jpg" alt="vs Chatham University"
+                            class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')"
+                            width="400" height="300">
+                        <div class="gallery-caption">vs Chatham University</div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="team">
+                <div class="col-md-4 col-sm-6 reveal gallery-col" data-category="match">
                     <div class="gallery-item rounded" role="button" tabindex="0" onclick="openLightbox(5)"
                         onkeydown="if(event.key==='Enter')openLightbox(5)">
-                        <picture>
-                            <source type="image/webp" srcset="assets/photos/394E526F-3293-4810-9F19-6BD0A035A691_1_201_a-400w.webp 400w, assets/photos/394E526F-3293-4810-9F19-6BD0A035A691_1_201_a-800w.webp 800w, assets/photos/394E526F-3293-4810-9F19-6BD0A035A691_1_201_a-1200w.webp 1200w" sizes="(max-width: 768px) 400px, (max-width: 1200px) 800px, 1200px">
-                            <img src="assets/photos/394E526F-3293-4810-9F19-6BD0A035A691_1_201_a.jpeg" alt="Team" class="gallery-img loading" loading="lazy" onload="this.classList.remove('loading')" width="400" height="300">
-                        </picture>
+                        <img src="assets/photos/394E526F-3293-4810-9F19-6BD0A035A691_1_201_a.jpeg"
+                            alt="vs Denison University" class="gallery-img loading" loading="lazy"
+                            onload="this.classList.remove('loading')" width="400" height="300">
+                        <div class="gallery-caption">vs Denison University</div>
                     </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 mb-4 reveal">
+                <p class="section-label">Recent</p>
+                <h2 class="section-title">Latest Matches</h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5 reveal">
+                    <a href="https://www.youtube.com/watch?v=-HehF4XwKiM&t=12333" target="_blank"
+                        rel="noopener noreferrer" class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/-HehF4XwKiM/maxresdefault.jpg"
+                                alt="CSA Divisional Championship vs Dickinson" loading="lazy">
+                            <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                        </div>
+                        <div class="video-title">CSA Divisional Championship vs Dickinson</div>
+                        <div class="video-meta">CSA · Mar 1, 2026</div>
+                    </a>
+                </div>
+                <div class="col-md-5 reveal">
+                    <a href="https://www.youtube.com/watch?v=qLYug7WsHnU&t=17473" target="_blank"
+                        rel="noopener noreferrer" class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/qLYug7WsHnU/maxresdefault.jpg"
+                                alt="CSA Divisional Championship vs Hamilton" loading="lazy">
+                            <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                        </div>
+                        <div class="video-title">CSA Divisional Championship vs Hamilton</div>
+                        <div class="video-meta">CSA · Feb 28, 2026</div>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="separator"></div>
 
     <!-- CONTACT -->
     <section id="contact">
@@ -1238,23 +2421,16 @@
             </div>
             <div class="row justify-content-center g-4">
                 <div class="col-md-4 reveal">
-                    <div class="card p-4 h-100 shadow-sm">
-                        <h5 class="mb-4 text-warning fw-light"
-                            style="letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;">Contact Information
-                        </h5>
+                    <div class="card p-4 h-100">
+                        <h5 class="mb-4"
+                            style="color:var(--brand-yellow);letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;font-weight:400;">
+                            Contact Information</h5>
                         <div class="mb-4">
-                            <label class="text-secondary small d-block mb-1">Sponsorship & Partnerships</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="bi bi-briefcase text-warning me-2"></i>
-                                <a href="mailto:emirhnsenn@outlook.com" class="text-white text-decoration-none fw-bold"
-                                    style="font-size:0.9rem;">emirhnsenn@outlook.com</a>
-                                <button type="button" class="btn btn-sm btn-outline-light" onclick="copyEmail()" 
-                                    style="border-color:#333;font-size:0.75rem;padding:4px 10px;" title="Copy email">
-                                    <i class="bi bi-clipboard"></i>
-                                </button>
-                            </div>
+                            <p style="color:#bbb;font-size:0.85rem;margin-bottom:8px;">Sponsorship & Partnerships</p>
+                            <a href="mailto:emirhnsenn@outlook.com"
+                                style="color:#fff;text-decoration:none;font-size:0.9rem;">📧 emirhnsenn@outlook.com</a>
                         </div>
-                        <label class="text-secondary small d-block mb-3">Social Media</label>
+                        <label class="text-secondary small d-block mb-2">Social Media</label>
                         <div class="social-links d-flex gap-2">
                             <a href="https://www.instagram.com/emirhnsenn" target="_blank" rel="noopener noreferrer"
                                 class="btn btn-outline-light btn-sm rounded-circle social-btn" aria-label="Instagram"><i
@@ -1272,18 +2448,29 @@
                     </div>
                 </div>
                 <div class="col-md-6 reveal">
-                    <div class="card p-4 shadow-sm">
-                        <h5 class="mb-4 fw-light"
-                            style="letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;color:#aaa;">Send a
-                            Message</h5>
+                    <div class="card p-4">
+                        <h5 class="mb-4"
+                            style="color:#aaa;letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;font-weight:400;">
+                            Send a Message</h5>
                         <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
                             <input type="hidden" name="access_key" value="f194ebba-3b0e-48ce-bd1d-a19122cae468">
-                            <input type="text" name="website_url" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <input type="text" name="website_url" style="position:absolute;left:-9999px" tabindex="-1"
+                                autocomplete="off" aria-hidden="true">
                             <div class="mb-3"><label class="form-label text-secondary small">Name</label><input
                                     type="text" name="name" class="form-control" placeholder="Your Name" required></div>
                             <div class="mb-3"><label class="form-label text-secondary small">Email</label><input
                                     type="email" name="email" class="form-control" placeholder="name@example.com"
                                     required></div>
+                            <div class="mb-3"><label class="form-label text-secondary small">Subject</label>
+                                <select name="subject" class="form-control" required>
+                                    <option value="" disabled selected>Select a topic</option>
+                                    <option value="Sponsorship">Sponsorship & Partnership</option>
+                                    <option value="Media">Media & Press</option>
+                                    <option value="Fan">Fan Message</option>
+                                    <option value="Coaching">Coaching Inquiry</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
                             <div class="mb-4"><label class="form-label text-secondary small">Message</label><textarea
                                     name="message" class="form-control" rows="4" placeholder="How can I help you?"
                                     required></textarea></div>
@@ -1304,6 +2491,7 @@
         <img id="lightbox-img" src="" alt="Photo">
         <button class="lightbox-next" onclick="shiftLightbox(1)" aria-label="Next"><i
                 class="bi bi-chevron-right"></i></button>
+        <div class="lightbox-caption" id="lightbox-caption"></div>
         <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
@@ -1320,17 +2508,9 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-social">
-                <a href="https://www.instagram.com/emirhnsenn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
-                        class="bi bi-instagram"></i></a>
-                <a href="https://www.tiktok.com/@emirhnsenn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
-                        class="bi bi-tiktok"></i></a>
-                <a href="https://twitter.com/emirhnsenn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i
-                        class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/in/emirhnsenn/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
-                        class="bi bi-linkedin"></i></a>
+            <div class="footer-bottom">
+                <p>© 2026 <span class="footer-name">Emirhan Sen</span> — All rights reserved.</p>
             </div>
-            <p>© 2026 <span class="footer-name">Emirhan Sen</span> — All rights reserved.</p>
         </div>
     </footer>
 
@@ -1338,9 +2518,36 @@
     <script>
         // SCROLL REVEAL
         const revealObserver = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 100); revealObserver.unobserve(e.target); } });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), 100);
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Observe all reveal classes
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-blur, .timeline').forEach(el => revealObserver.observe(el));
+
+        // Optimized scroll handler - combined parallax + progress
+        const heroImg = document.querySelector('.hero-bg-img');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function updateOnScroll() {
+            const scrollY = window.scrollY;
+
+            // Parallax effect (only if hero is visible and motion is allowed)
+            if (heroImg && scrollY < window.innerHeight && !prefersReducedMotion) {
+                heroImg.style.transform = `translateY(${scrollY * 0.4}px)`;
+            }
+
+            // Scroll progress (always update)
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+            document.documentElement.style.setProperty('--scroll-progress', scrollPercent + '%');
+        }
+
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
 
         // COUNT-UP
         const countObserver = new IntersectionObserver(entries => {
@@ -1354,16 +2561,35 @@
         }, { threshold: 0.5 });
         document.querySelectorAll('.count-up[data-target]').forEach(el => countObserver.observe(el));
 
-        // NAVBAR
+        // NAVBAR - Smooth scroll effect
         const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => { navbar.style.backgroundColor = window.scrollY > 50 ? 'rgba(0,0,0,0.98)' : 'rgba(0,0,0,0.85)'; });
+        let lastScrollY = 0;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const isScrolled = scrollY > 50;
+                    navbar.style.backgroundColor = isScrolled ? 'rgba(0,0,0,0.95)' : 'rgba(0,0,0,0.85)';
+                    navbar.style.borderBottomColor = isScrolled ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.08)';
+
+                    // Subtle shadow on scroll
+                    navbar.style.boxShadow = isScrolled ? '0 4px 20px rgba(0,0,0,0.3)' : 'none';
+
+                    lastScrollY = scrollY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
 
         // ACTIVE NAV
         const allSections = document.querySelectorAll('section[id], div[id="home"]');
         const navLinks = document.querySelectorAll('.nav-link');
         const activateLink = () => {
             let cur = '';
-            allSections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
+            allSections.forEach(s => { if (window.scrollY >= s.offsetTop - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-scroll-threshold'))) cur = s.id; });
             navLinks.forEach(l => { l.classList.remove('active'); if (l.getAttribute('href') === '#' + cur) l.classList.add('active'); });
         };
         window.addEventListener('scroll', activateLink); activateLink();
@@ -1380,36 +2606,100 @@
         const btt = document.getElementById('backToTop');
         window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
 
-        // GALLERY FILTER
+        // GALLERY FILTER with ARIA
         function filterGallery(cat, btn) {
-            document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelectorAll('.gallery-col').forEach(col => {
-                col.classList.toggle('hidden', !(cat === 'all' || col.dataset.category === cat));
+            document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
             });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            document.querySelectorAll('.gallery-col').forEach(col => {
+                const show = cat === 'all' || col.dataset.category === cat;
+                col.classList.toggle('hidden', !show);
+            });
+            setTimeout(rebuildLightbox, 400);
         }
 
-        // LIGHTBOX - Use WebP versions if available
-        const images = Array.from(document.querySelectorAll('.gallery-img')).map(img => {
-            const webpSrc = img.parentElement.querySelector('source[type="image/webp"]')?.srcset?.split(',')[0]?.split(' ')[0];
-            return {
-                src: webpSrc || img.src,
-                alt: img.alt
-            };
-        });
+        // LIGHTBOX
+        let images = [];
         let idx = 0;
+        let lastFocusedElement = null;
+
+        function rebuildLightbox() {
+            const visibleImgs = Array.from(document.querySelectorAll('.gallery-col:not(.hidden) .gallery-img'));
+            images = visibleImgs.map(img => {
+                const caption = img.closest('.gallery-item')?.querySelector('.gallery-caption')?.textContent || '';
+                return { src: img.src, alt: img.alt, caption };
+            });
+            visibleImgs.forEach((img, i) => {
+                const btn = img.closest('[role="button"]');
+                if (btn) {
+                    btn.onclick = () => openLightbox(i);
+                    btn.onkeydown = (e) => { if (e.key === 'Enter') openLightbox(i); };
+                }
+            });
+        }
+        rebuildLightbox();
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const lbCounter = document.getElementById('lightbox-counter');
-        function openLightbox(i) { idx = i; updateLb(); lb.style.display = 'flex'; document.body.style.overflow = 'hidden'; requestAnimationFrame(() => lb.classList.add('show')); }
-        function updateLb() { lbImg.src = images[idx].src; lbImg.alt = images[idx].alt; lbCounter.textContent = (idx + 1) + ' / ' + images.length; }
-        function closeLightbox() { lb.classList.remove('show'); setTimeout(() => { lb.style.display = 'none'; document.body.style.overflow = ''; }, 300); }
+        const lbCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(i) {
+            lastFocusedElement = document.activeElement;
+            idx = i;
+            updateLb();
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => lb.classList.add('show'));
+            lb.querySelector('.lightbox-close').focus();
+        }
+
+        function updateLb() {
+            lbImg.src = images[idx].src;
+            lbImg.alt = images[idx].alt;
+            lbCounter.textContent = (idx + 1) + ' / ' + images.length;
+            if (lbCaption) lbCaption.textContent = images[idx].caption || '';
+        }
+
+        function closeLightbox() {
+            lb.classList.remove('show');
+            setTimeout(() => {
+                lb.style.display = 'none';
+                document.body.style.overflow = '';
+                if (lastFocusedElement) lastFocusedElement.focus();
+            }, 300);
+        }
+
         function closeLightboxOnBg(e) { if (e.target === lb) closeLightbox(); }
-        function shiftLightbox(d) { idx = (idx + d + images.length) % images.length; lbImg.style.opacity = '0'; setTimeout(() => { updateLb(); lbImg.style.opacity = '1'; }, 150); }
+
+        function shiftLightbox(d) {
+            idx = (idx + d + images.length) % images.length;
+            lbImg.style.opacity = '0';
+            setTimeout(() => { updateLb(); lbImg.style.opacity = '1'; }, 150);
+        }
+
+        // Lightbox touch support
         let tx = 0;
-        lb.addEventListener('touchstart', e => tx = e.changedTouches[0].clientX);
+        lb.addEventListener('touchstart', e => tx = e.changedTouches[0].clientX, { passive: true });
         lb.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 50) shiftLightbox(d > 0 ? 1 : -1); });
-        document.addEventListener('keydown', e => { if (!lb.classList.contains('show')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') shiftLightbox(-1); if (e.key === 'ArrowRight') shiftLightbox(1); });
+
+        // Lightbox keyboard support with focus trapping
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('show')) return;
+            if (e.key === 'Escape') { closeLightbox(); return; }
+            if (e.key === 'ArrowLeft') { shiftLightbox(-1); return; }
+            if (e.key === 'ArrowRight') { shiftLightbox(1); return; }
+            // Focus trap
+            if (e.key === 'Tab') {
+                const focusable = lb.querySelectorAll('button');
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+        });
 
         // COPY EMAIL
         function copyEmail() {
@@ -1425,10 +2715,16 @@
 
         // SHARE ACHIEVEMENTS
         function shareAchievements() {
-            const text = '🏆 Emirhan Sen - 2025-26 Season Highlights:\n• All-Liberty League First Team\n• LL Rookie of the Week (Feb 16, 2026)\n• LL Performer of the Week (Nov 24, 2025)\n• 11-5 Record at No. 3 Position\n\nCheck out my full profile:';
+            const text = `Emirhan Sen - 2025-26 Season Highlights:
+• All-Liberty League First Team
+• LL Rookie of the Week (Feb 16, 2026)
+• LL Performer of the Week (Nov 24, 2025)
+• 11-7 Record at No. 3 Position
+
+Check out my full profile:`;
             const url = 'https://emirhnsenn.me';
             if (navigator.share) {
-                navigator.share({ title: 'Emirhan Sen - Squash Player', text, url }).catch(() => {});
+                navigator.share({ title: 'Emirhan Sen - Squash Player', text, url }).catch(() => { });
             } else {
                 navigator.clipboard.writeText(text + ' ' + url).then(() => {
                     showToast('Copied to clipboard!', 'success');
@@ -1445,6 +2741,7 @@
         // Inline validation
         const nameInput = cForm.querySelector('[name="name"]');
         const emailInput = cForm.querySelector('[name="email"]');
+        const subjectInput = cForm.querySelector('[name="subject"]');
         const messageInput = cForm.querySelector('[name="message"]');
 
         function showInlineError(input, msg) {
@@ -1461,20 +2758,21 @@
             if (err) err.style.display = 'none';
         }
 
-        [nameInput, emailInput, messageInput].forEach(inp => {
+        [nameInput, emailInput, subjectInput, messageInput].forEach(inp => {
             inp.addEventListener('blur', () => { if (inp.validity.valid) clearInlineError(inp); });
             inp.addEventListener('input', () => clearInlineError(inp));
+            inp.addEventListener('change', () => clearInlineError(inp));
         });
 
         cForm.addEventListener('submit', async e => {
             e.preventDefault();
-            // Check honeypot (silent spam block)
             if (cForm.querySelector('[name="website_url"]').value) return;
 
             let valid = true;
             if (!nameInput.value.trim()) { showInlineError(nameInput, 'Please enter your name'); valid = false; }
             if (!emailInput.value.trim()) { showInlineError(emailInput, 'Please enter your email'); valid = false; }
             else if (!emailInput.checkValidity()) { showInlineError(emailInput, 'Please enter a valid email'); valid = false; }
+            if (!subjectInput.value) { showInlineError(subjectInput, 'Please select a subject'); valid = false; }
             if (!messageInput.value.trim()) { showInlineError(messageInput, 'Please enter a message'); valid = false; }
 
             if (!valid) return;
@@ -1483,7 +2781,7 @@
             try {
                 const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(cForm) });
                 const j = await r.json();
-                if (j.success) { showToast('Message sent successfully!', 'success'); cForm.reset(); [nameInput, emailInput, messageInput].forEach(clearInlineError); }
+                if (j.success) { showToast('Message sent successfully!', 'success'); cForm.reset();[nameInput, emailInput, subjectInput, messageInput].forEach(clearInlineError); }
                 else showToast('Something went wrong. Please try again.', 'error');
             } catch { showToast('Network error. Please try again.', 'error'); }
             finally { subBtn.disabled = false; subBtn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message'; }
